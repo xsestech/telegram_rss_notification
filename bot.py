@@ -9,7 +9,8 @@ import sqlite3
 import logging # import lib for logging data
 
 logger = telebot.logger #add logger
-telebot.logger.setLevel(filename='bot.log',logging.DEBUG) #setup logger
+telebot.logger.setLevel(logging.INFO) #setup logger
+telebot.logger.addHandler(logging.FileHandler("botter.log"))
 r = requests.get('http://tproger.ru/feed') #get html from tproger
 rss = BS(r.content,features='xml') #setup parser
 bot = telebot.TeleBot(config.TOKEN) #create bot obj and configure Token
