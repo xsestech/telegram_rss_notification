@@ -8,7 +8,8 @@ from bs4 import BeautifulSoup as BS # import lib for parsing
 import sqlite3
 import logging # import lib for logging data
 
-logging.basicConfig(filename='bot.log',level=logging.DEBUG)
+logger = telebot.logger #add logger
+telebot.logger.setLevel(filename='bot.log',logging.DEBUG) #setup logger
 r = requests.get('http://tproger.ru/feed') #get html from tproger
 rss = BS(r.content,features='xml') #setup parser
 bot = telebot.TeleBot(config.TOKEN) #create bot obj and configure Token
@@ -68,6 +69,7 @@ def resp(message):
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call): # send news for user's request 
+    logger.info(call) #log call
     try:
         if call.message:
             i = int(call.data)
