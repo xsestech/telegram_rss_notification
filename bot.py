@@ -9,7 +9,7 @@ import sqlite3
 import logging # import lib for logging data
 
 logger = telebot.logger #add logger
-telebot.logger.setLevel(logging.INFO) #setup logger
+telebot.logger.setLevel(logging.DEBUG) #setup logger
 telebot.logger.addHandler(logging.FileHandler("botter.log"))
 r = requests.get('http://tproger.ru/feed') #get html from tproger
 rss = BS(r.content,features='xml') #setup parser
